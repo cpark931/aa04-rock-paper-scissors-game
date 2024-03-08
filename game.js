@@ -25,19 +25,58 @@ let ties = 0;
 
 /***************************** HELPER FUNCTIONS ******************************/
 function printHelp() {
-  // Your code here 
+  // Your code here
+  console.log("  Type 'r' for Rock")
+  console.log("  Type 'p' for Paper")
+  console.log("  Type 's' for Scissors")
+  console.log("  Type 'q' to quit")
+  console.log("  Type 'h' for a list of valid commands\n")
 }
 
 function getWinner(move1, move2) {
-  // Your code here 
+  // Your code here
+  if (move1 === move2) {
+    return 0
+  } else if (
+    (move1 === 'r' && move2 === 's') ||
+    (move1 === 's' && move2 === 'p') ||
+    (move1 === 'p' && move2 === 'r')
+  ) {
+    return 1
+  } else {
+    return -1
+  }
 }
 
 function getCPUMove() {
-  // Your code here 
+  // Your code here
+  const moves = ['r', 'p', 's'];
+  const randomIndex = Math.floor(Math.random() * moves.length)
+  return moves[randomIndex]
 }
 
 function processMove(cmd, cpu) {
-  // Your code here 
+  // Your code here
+  const moves = {
+    r: 'r' ,
+    p: 'p',
+    s: 's'
+  }
+
+  const playerMove = moves[cmd];
+  const cpuMove = moves[cpu];
+
+  console.log(`You pick ${playerMove}, computer picks ${cpuMove}.`)
+
+  if (cmd === cpu) {
+    console.log("You tie.\n");
+  } else if ((cmd === 'r' && cpu === 's') ||
+  (cmd === 'p' && cpu === 'r') ||
+  (cmd === 's' && cpu === 'p')) {
+    console.log("You win!\n")
+  } else {
+    console.log("You lose...\n")
+  }
 }
 
 /******************************* MAIN FUNCTION *******************************/
